@@ -1,3 +1,5 @@
+import kotlin.math.abs
+
 fun main() {
     fun separateNum(line: String,listOne: MutableList<Int>, listTwo: MutableList<Int> ){
         val nums = line.split(" ").filter{it.isNotEmpty()}
@@ -12,13 +14,8 @@ fun main() {
         Two.sort()
         var distance = 0
         for (i in One.indices){
-            if(One[i]>Two[i]){
-                val diff : Int = One[i] - Two[i]
+                val diff : Int =abs( One[i] - Two[i])
                 distance += diff
-            }else{
-                val diff :Int = Two[i] - One[i]
-                distance += diff
-            }
         }
         return distance
     }
