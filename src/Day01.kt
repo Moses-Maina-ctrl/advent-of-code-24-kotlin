@@ -33,7 +33,21 @@ fun main() {
     }
 
     fun part2(input: List<String>): Int {
-        return input.size
+        val  valCounter= HashMap<Int,Int>()
+        val (left, right) = input.map{
+            val firstNum = it.substringBefore(" ").toInt()
+            val secondNum = it.substringAfterLast(" ").toInt()
+            firstNum to secondNum
+        }.unzip()
+        for (num in right){
+            if (num in left) {
+                valCounter[num] = (valCounter[num] ?: 0) + 1
+            }
+        }
+        val similarityScore : Int= valCounter.map{(key ,value)->
+            key *value
+        }.sum()
+        return similarityScore
     }
 
     // Test if implementation meets criteria from the description, like:
